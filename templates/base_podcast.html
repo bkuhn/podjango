@@ -1,0 +1,54 @@
+<!-- FIXME: SFLC SPECIFIC CONTENT!!! -->
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
+
+{% extends "base_standard.html" %}
+
+{% block category %}podcast{% endblock %}
+
+{% block head %}
+<link rel="alternate" type="application/rss+xml" title="MP3 Audio Feed for the Software Freedom Law Show" href="/feeds/podcast-mp3/" />
+<link rel="alternate" type="application/rss+xml" title="Ogg/Vorbis Audio Feed for the Software Freedom Law Show" href="/feeds/podcast-ogg/" />
+{% endblock %}
+
+{% block internal_navigate %}
+
+<h3>Tags</h3>
+<ul>
+{% for tag in all_tags %}
+<li><a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a></li>
+{% endfor %}
+</ul>
+
+<p><a href="/podcast/">All podcasts...</a></p>
+<!-- Query is not working right now! -->
+<!-- <p><a href="/podcast/query/">Query...</a></p> -->
+
+{% endblock %}
+
+{% block copyright_info %}
+<p>The Software Freedom Law Show is produced by <a href="http://adventuresinopensource.blogspot.com/">Dan Lynch</a>
+  of <a href="http://www.halfbakedmedia.com/">half baked media</a>.  Theme
+  music written and performed
+  by <a href="http://www.miketarantino.com">Mike Tarantino</a>
+  with <a href="http://www.charliepaxson.com">Charlie Paxson</a> on drums.</p>
+
+<p><a rel="license"
+   href="http://creativecommons.org/licenses/by-nd/3.0/us/"><img alt="Creative
+   Commons License" style="border-width:0"
+   src="http://i.creativecommons.org/l/by-nd/3.0/us/88x31.png"
+   /></a><br />The content
+   of <span xmlns:dc="http://purl.org/dc/elements/1.1/"
+   href="http://purl.org/dc/dcmitype/Sound" rel="dc:type">our
+   podcasts</span> and the accompanying show notes are licensed under
+   a <a rel="license"
+   href="http://creativecommons.org/licenses/by-nd/3.0/us/">Creative
+   Commons Attribution-No Derivative Works 3.0 United States License</a>.</p>
+
+<p>The icons for the RSS audio feeds and direct audio links are borrowed from
+   the <a href="http://www.mightyseek.com/podpress/">PodPress</a> project
+   and are licensed under <a href="/gplv2.txt">GPLv2</a>.</p>
+
+{% endblock %}
+

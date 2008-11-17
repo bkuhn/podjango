@@ -1,0 +1,28 @@
+<!-- FIXME: SFLC specific content -->
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
+{% extends "base_podcast.html" %}
+
+{% block subtitle %}The Software Freedom Law Show Archive: {{ year }} - {% endblock %}
+
+{% block content %}
+
+<h1><a href="/feeds/podcast-ogg/"
+       class="feedlink"><img src="/img/podcast/rss-audioogg.png"
+                             alt="[Ogg/Vorbis Audio RSS]"/></a>
+<a href="/feeds/podcast-mp3/"
+       class="feedlink"><img src="/img/podcast/rss-audiomp3.png"
+                             alt="[MP3 Audio RSS]"/></a>
+The Software Freedom Law Show</h1>
+
+<h2>The Software Freedom Law Show Archive: {{ year }}</h2>
+
+<ul>
+{% for object in object_list %}
+    <li><a href="{{ object.get_absolute_url }}"><b>{{ object.title|safe }}</b></a><br/>
+    <i>{{ object.pub_date|date:"F j, Y" }}; duration: {{ object.duration }}</i></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

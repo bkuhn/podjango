@@ -1,0 +1,16 @@
+<!-- FIXME: SFLC specific content -->
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
+
+
+{% ifequal obj.omnibus_type "news" %}
+<p><i>A news item from SFLC.</i></p>
+{% endifequal %}
+{% ifequal obj.omnibus_type "podcast" %}
+<p><i>An episode of the <a href="http://{{ site }}/podcast/">Software Freedom Law Show</a>.</i></p>
+{% endifequal %}
+{% ifequal obj.omnibus_type "event" %}
+<p><i>An <a href="http://{{ site }}/events/">upcoming event</a> related to the SFLC .</i></p>
+{% endifequal %}
+{% include obj.omnibus_feed_description_template  %}

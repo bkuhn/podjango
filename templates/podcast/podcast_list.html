@@ -1,0 +1,62 @@
+<!-- FIXME: SFLC specific content -->
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
+{% extends "base_podcast.html" %}
+
+{% block subtitle %}The Software Freedom Law Show - {% endblock %}
+
+{% block content %}
+
+<h1><a href="/feeds/podcast-ogg/"
+       class="feedlink"><img src="/img/podcast/rss-audioogg.png"
+                             alt="[Ogg/Vorbis Audio RSS]"/></a>
+<a href="/feeds/podcast-mp3/"
+       class="feedlink"><img src="/img/podcast/rss-audiomp3.png"
+                             alt="[MP3 Audio RSS]"/></a>
+The Software Freedom Law Show</h1>
+
+{% if tags %}
+<p>Displaying podcasts
+tagged {% for tag in tags %}{% if not forloop.last %}{% if not forloop.first %}, {% endif %}{% endif %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% ifequal forloop.revcounter 2 %} or {% endifequal %}{% endfor %}
+</p>
+{% endif %}
+
+{% for object in object_list %}
+    <div class="shaded">
+    <p class="date">{{ object.pub_date|date:"F j, Y" }}</p>
+    <h3>
+<a class="feedlink" href="{{ object.ogg_path }}"><img alt="[Get podcast in Ogg/Vorbis
+                                          format]" src="/img/podcast/audio_ogg_button.png"/></a>
+<a class="feedlink" href="{{ object.mp3_path }}"><img alt="[Get podcast in MP3 format]"
+                                     src="/img/podcast/audio_mp3_button.png"/></a>
+
+<a href="{{ object.get_absolute_url }}">{{ object.title|safe }}</a></h3>
+    <h4>Summary</h4>
+
+    {{ object.summary|safe }}
+
+    <p>
+    This show was released on {{ object.pub_date|date:"l j F Y" }}; its
+    running time is {{ object.duration}}.</p>
+    <h4>Show Notes</h4>
+    {{ object.body|safe }}
+    <br/>
+    {% if object.tags.all %}<p class="podcast-tags small">Tags: {% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+    </div>
+{% endfor %}
+
+<p>
+{% if has_next %}<a class="next_page_button" href="?page={{ next }}{% if query_string %}&amp;{{ query_string|escape }}{% endif %}">Next page (older) &raquo;</a>{% endif %}
+{% if has_previous %}<a href="?page={{ previous }}{% if query_string %}&amp;{{ query_string|escape }}{% endif %}">&laquo; Previous page (newer)</a>{% endif %}
+</p>
+<div class="clear"></div>
+
+{% if date_list %}
+<h3>Index by date</h3>
+<ul>
+{% for year in date_list %}<li><a href="{{ year|date:"Y" }}/">{{ year|date:"Y" }}</a></li>{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

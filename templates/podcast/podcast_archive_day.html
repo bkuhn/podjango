@@ -1,0 +1,34 @@
+<!-- FIXME: SFLC specific content -->
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
+{% extends "base_podcast.html" %}
+
+{% block subtitle %}The Software Freedom Law Show Archive: {{ day|date:"F j, Y" }} - {% endblock %}
+
+{% block content %}
+
+
+<h1><a href="/feeds/podcast-ogg/"
+       class="feedlink"><img src="/img/podcast/rss-audioogg.png"
+                             alt="[Ogg/Vorbis Audio RSS]"/></a>
+<a href="/feeds/podcast-mp3/"
+       class="feedlink"><img src="/img/podcast/rss-audiomp3.png"
+                             alt="[MP3 Audio RSS]"/></a>
+The Software Freedom Law Show</h1>
+
+<h2>The Software Freedom Law Show Archive: {{ day|date:"F j, Y" }}</h2>
+
+{% for object in object_list %}
+    <div class="shaded">
+    <p class="date">{{ object.pub_date|date:"F j, Y" }}</p>
+    <h3><a href="{{ object.get_absolute_url }}">{{ object.title|safe }}</a></h3>
+        {{ object.summary|safe }}
+    <p><span class="continued"><a href="{{ object.get_absolute_url
+    }}">Read More...</a></span></p>
+    <p>Released on {{ object.pub_date|date:"F j, Y" }}; its running time is {{ object.duration }}</p>
+    {% if object.tags.all %}<p class="blog-tags small">Tags: {% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}

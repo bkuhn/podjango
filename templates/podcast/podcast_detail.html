@@ -1,0 +1,57 @@
+<!-- FIXME: SFLC specific content -->
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
+{% extends "base_podcast.html" %}
+
+{% block subtitle %}{{ object.title|striptags }} - Software Freedom Law Show - {% endblock %}
+
+{% block content %}
+
+<h1><a href="/feeds/podcast-ogg/"
+       class="feedlink"><img src="/img/podcast/rss-audioogg.png"
+                             alt="[Ogg/Vorbis Audio RSS]"/></a>
+<a href="/feeds/podcast-mp3/"
+       class="feedlink"><img src="/img/podcast/rss-audiomp3.png"
+                             alt="[MP3 Audio RSS]"/></a>
+The Software Freedom Law Show</h1>
+
+<h2><a class="feedlink" href="{{ object.ogg_path }}"><img alt="[Get podcast in Ogg/Vorbis
+                                          format]" src="/img/podcast/audio_ogg_button.png"/></a>
+<a class="feedlink" href="{{ object.mp3_path }}"><img alt="[Get podcast in MP3 format]"
+                                     src="/img/podcast/audio_mp3_button.png"/></a>
+
+
+{{ object.title|safe }}</h2>
+
+<p class="date">{{ object.pub_date|date:"j F Y" }}</p>
+
+<h3>Download</h3>
+
+<a href="{{ object.ogg_path }}" class="document_format">ogg</a><a href="{{ object.mp3_path }}"  class="document_format">mp3</a>
+
+<h3>Summary</h3>
+
+{{ object.summary|safe }}
+
+<p>
+This show was released on {{ object.pub_date|date:"l j F Y" }}; its
+running time is {{ object.duration}}.</p>
+
+<h3>Show Notes</h3>
+{{ object.body|safe }}
+<br/>
+
+<hr width="80%"/>
+
+<p>Send feedback and comments on the podcast
+to <a href="mailto:podcast@softwarefreedom.org">&lt;podcast@softwarefreedom.org&gt;</a>.
+You can keep in touch with <a href="http://www.softwarefreedom.org">the
+SFLC</a> on our IRC channel, #sflc on irc.freenode.net, and
+  by <a href="http://identi.ca/sflc">following SFLC on identi.ca</a>.</p>
+
+{% if object.tags.all %}<p class="blog-tags">Tags: {% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+
+<p><span class="continued"><a href="/podcast/">Other Software Freedom Law Show podcasts...</a></span></p>
+
+{% endblock %}

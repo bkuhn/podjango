@@ -1,8 +1,10 @@
              THE LICENSE OF podjango IS AGPLv3-or-later
 
-Short version: The effective license of podjango, when copied, modified,
-               conveyed, propagated and/or redistributed is
-               AGPLv3-or-later.  More details of the licensing follows.
+Short version: The effective license of the podjango software, when
+               copied, modified, conveyed, propagated and/or redistributed
+               is AGPLv3-or-later.  More details of the licensing follows.
+
+               The HTML templates are released under a permissive license.
 
 Details:
 
@@ -30,3 +32,9 @@ The current copyright holders are:
 # along with this program in a file in the toplevel directory called
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 #
+###############################################################################
+The templates are licensed this way:
+
+<!--  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org> -->
+<!-- Permission is granted to copy, modify, redistribute, propagate, 
+  -- and/or convey this template in any form. -->
