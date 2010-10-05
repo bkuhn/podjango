@@ -17,14 +17,14 @@
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.conf.urls.defaults import *
-from models import Podcast, PodcastTag # relative import
+from models import Cast, CastTag # relative import
 from apps.staff.models import Person
 from datetime import datetime
 
 extra_context = {}
 
 info_dict = {
-    'queryset': Podcast.objects.all(),
+    'queryset': Cast.objects.all(),
     'date_field': 'pub_date',
     'extra_context': extra_context,
 }
@@ -55,7 +55,7 @@ def all_tags_by_use_amount():
     # tally use amount
     retval = []
     current = None
-    for obj in PodcastTag.objects.filter(podcast__pub_date__lte=datetime.now(),
+    for obj in CastTag.objects.filter(podcast__pub_date__lte=datetime.now(),
                                        podcast__isnull=False).order_by('label'):
         if current is not None and obj.id == current.id:
             current.cnt += 1

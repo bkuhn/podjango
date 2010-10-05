@@ -21,7 +21,7 @@ from django.conf import settings
 from apps.staff.models import Person
 from datetime import datetime, timedelta
 
-class PodcastTag(models.Model):
+class CastTag(models.Model):
     """Tagging for podcasts"""
 
     label = models.CharField(max_length=100)
@@ -36,8 +36,8 @@ class PodcastTag(models.Model):
     def get_absolute_url(self):
         return u"/podcast/?tag=%s" % self.slug
 
-class Podcast(models.Model):
-    """Podcast"""
+class Cast(models.Model):
+    """Cast"""
 
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
@@ -45,7 +45,7 @@ class Podcast(models.Model):
     body = models.TextField(help_text="Use raw HTML.  Include the full body of any show notes or other information about this episode.  It will be labelled on the site as Show Notes.  It is included on the detail entry, and in the description data on the podcast RSS feed.")
     pub_date = models.DateTimeField()
     poster = models.ForeignKey(Person)
-    tags = models.ManyToManyField(PodcastTag, null=True, blank=True)
+    tags = models.ManyToManyField(CastTag, null=True, blank=True)
     ogg_path = models.CharField(max_length=300, blank=True,
                              help_text="Local filename of the Ogg file, relative to webroot.  File should be uploaded into the static media area for podcasts.")
     mp3_path = models.CharField(max_length=300, blank=True,

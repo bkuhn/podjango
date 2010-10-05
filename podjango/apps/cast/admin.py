@@ -17,14 +17,14 @@
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.contrib import admin
-from models import PodcastTag, Podcast
+from models import CastTag, Cast
 
-class PodcastTagAdmin(admin.ModelAdmin):
+class CastTagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('label',)}
 
-admin.site.register(PodcastTag, PodcastTagAdmin)
+admin.site.register(CastTag, CastTagAdmin)
 
-class PodcastAdmin(admin.ModelAdmin):
+class CastAdmin(admin.ModelAdmin):
     list_display = ('pub_date', 'title')
     list_filter = ['pub_date']
     date_hierarchy = 'pub_date'
@@ -33,4 +33,4 @@ class PodcastAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
 
 
-admin.site.register(Podcast, PodcastAdmin)
+admin.site.register(Cast, CastAdmin)

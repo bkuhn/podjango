@@ -16,7 +16,7 @@
 # along with this program in a file in the toplevel directory called
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 #
-from models import Podcast, PodcastTag # relative import
+from models import Cast, CastTag # relative import
 from django.views.generic.list_detail import object_list
 from apps.staff.models import Person
 from django.shortcuts import get_object_or_404, render_to_response
@@ -31,7 +31,7 @@ def last_name(person):
     return person.formal_name.rpartition(' ')[2]
 
 def custom_index(request, queryset, *args, **kwargs):
-    """Podcast list view that allows scrolling and also shows an index by
+    """Cast list view that allows scrolling and also shows an index by
     year.
     """
 
@@ -54,7 +54,7 @@ def custom_index(request, queryset, *args, **kwargs):
 
     tags = []
     if 'tag' in request.GET:
-        tags = [get_object_or_404(PodcastTag, slug=tag)
+        tags = [get_object_or_404(CastTag, slug=tag)
                 for tag in request.GET.getlist('tag')]
         extra_context['tags'] = tags
         queryset = queryset.filter(OR_filter('tags', tags))
@@ -92,7 +92,7 @@ def query(request):
         return relative_redirect(request, '%s%s%s' % (base_url, '?' if query_string else '', query_string))
 
     else:
-        tags = PodcastTag.objects.all().order_by('label')
+        tags = CastTag.objects.all().order_by('label')
         return render_to_response('podcast/query.html', {'tags': tags})
 
 def relative_redirect(request, path):
