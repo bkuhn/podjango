@@ -23,6 +23,8 @@ from django.contrib import admin
 
 #handler404 = 'modpythoncustom.view404'
 
+admin.autodiscover()
+
 urlpatterns = patterns('',
     (r'^$', 'podjango.frontpage.view'),
     (r'^feeds/(?P<url>.*)/?$', 'django.contrib.syndication.views.feed',
