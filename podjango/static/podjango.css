@@ -33,18 +33,18 @@ h3 { margin-top: .6em; margin-bottom: .4em; }
 .internalNavigate ul li { margin-top: .3em; margin-bottom: .3em; }
 
 .affiliate-link { float: right; }
-#affiliate-conservancy, #affiliate-mr {
+#affiliate-podjango, #affiliate-mr {
   padding: 2px 10px;
   white-space: nowrap;
   font-size: x-small;
   text-align: right;
 }
-#affiliate-conservancy { background: #d4ff9d; }
+#affiliate-podjango { background: #d4ff9d; }
 #affiliate-mr { background: #ddd; }
 
 /* Header */
 
-#conservancyheader {
+#podjangoheader {
   height: 140px;
 /*  background-color: #d1ff96; */
 /*  background-color: #92CC58; */
@@ -54,14 +54,14 @@ h3 { margin-top: .6em; margin-bottom: .4em; }
   background-color: #afe578;
   border-bottom: 1px solid #808080;
 }
-#conservancyheader h1 {
+#podjangoheader h1 {
   text-indent: -5000px;
   margin: 0; /* hide in favor of image */
 }
 #logobutton {
   display: block;
   position: absolute; left: 17px; top: 10px; height: 120px; width: 440px;
-  background: url(/img/conservancy-header.png)  left center no-repeat;
+  background: url(/img/podjango-header.png)  left center no-repeat;
 }
 
 /* Navigation bar */
@@ -171,7 +171,7 @@ h3 { margin-top: .6em; margin-bottom: .4em; }
 .column h2 a { text-decoration: none; color: #000000; }
 .column h2 a:hover { text-decoration: underline; }
 
-#conservancyfooter {
+#podjangofooter {
   margin-top: 1em;
   border-top: 1px solid #ccc;
   text-align: center;
@@ -195,7 +195,7 @@ p.date {
 
 a.feedlink /* RSS icon */ { display: block; float: right; font-size: 10pt; }
 
-blockquote, div.quote /* div.quote is used by conservancy whitepaper */ {
+blockquote, div.quote /* div.quote is used by podjango whitepaper */ {
   margin-left: 2em;
   margin-right: 2em;
   padding-left: 1em;
@@ -231,12 +231,12 @@ span.subsectionToc { padding-left: 4em; }
 span.subsubsectionToc { padding-left: 6em;}
 .js, .js p, .js p.bibitem, .js p.bibitem-p { background-color: #cde7e9; }
 
-body.conservancy-overview #navbar ul li.overview a,
-body.conservancy-Members #navbar ul li.Members a,
-body.conservancy-news #navbar ul li.news a,
-body.conservancy-blog #navbar ul li.blog a,
-body.conservancy-About #navbar ul li.About a,
-body.conservancy-donate #navbar ul li.donate a /* NO COMMA HERE! */
+body.podjango-overview #navbar ul li.overview a,
+body.podjango-Members #navbar ul li.Members a,
+body.podjango-news #navbar ul li.news a,
+body.podjango-blog #navbar ul li.blog a,
+body.podjango-About #navbar ul li.About a,
+body.podjango-donate #navbar ul li.donate a /* NO COMMA HERE! */
 { 
     color: #000033;
     font-weight: bold;
