@@ -8,7 +8,8 @@ import os
 def compileDir(arg, directory, names):
     compileall.compile_dir(directory, force=1)
 
-os.path.walk(".", compileDir, "")
+os.path.walk("podjango", compileDir, "")
+compileall.compile_dir(".", force=1)
 
 os.system("find . -type d -exec chmod gu+rx {} \;")
 os.system("find . -type f -exec chmod gu+r {} \;")
