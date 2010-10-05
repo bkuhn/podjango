@@ -1,0 +1,57 @@
+{% extends "base_podcast.html" %}
+{% load date_within %}
+
+{% block head %}
+<link rel="alternate" type="application/rss+xml" title="Software Freedom Conservancy Complete Feed" href="/feeds/omnibus/" />
+<link rel="alternate" type="application/rss+xml" title="Software Freedom Conservancy News" href="/feeds/news/" />
+<link rel="alternate" type="application/rss+xml" title="Software Freedom Conservancy Blogs" href="/feeds/blog/" />
+{% endblock %}
+
+{% block content %}
+
+<div class="singleColumn">
+
+<!-- FIXME: more hard coding here for FaiF -->
+
+<h1>Free as in Freedom</h1>
+
+<p>Free as in Freedom is a bi-weekly oggcast, hosted and presented by
+<a href="http://ebb.org/bkuhn">Bradley M. Kuhn</a> and Karen Sandler.
+The discussion includes legal, policy, and many other in the Free, Libre,
+and Open Source Software (FLOSS) world.  Occasionally, guest join
+Bradley and Karen to discuss various topics regarding FLOSS.</p>
+</div>
+
+<div class="columns">
+
+<div class="column column-small column-left">
+<p>
+<h2>Follow FaiF's RSS</h2>
+
+<p>There is RSS for both <a href="/feeds/cast-ogg/">ogg format</a> and  <a href="/feeds/cast-mp3/">mp3 format</a>.</p>
+
+</div>
+
+<div class="column column-large">
+{% if cast.0.is_recent %}
+<h2>
+
+<a href="/feeds/cast-ogg/"
+       class="feedlink"><img src="/img/cast/rss-audioogg.png"
+                             alt="[Ogg/Vorbis Audio RSS]"/></a>
+<a href="/feeds/cast-mp3/"
+       class="feedlink"><img src="/img/cast/rss-audiomp3.png"
+                             alt="[MP3 Audio RSS]"/></a><a href="/cast/">The
+       Software Freedom Law Show</a></h2>
+<a class="feedlink" href="{{ cast.0.ogg_path }}"><img alt="[Get cast in Ogg/Vorbis
+                                          format]" src="/img/cast/audio_ogg_button.png"/></a>
+<a class="feedlink" href="{{ cast.0.mp3_path }}"><img alt="[Get cast in MP3 format]"
+                                     src="/img/cast/audio_mp3_button.png"/></a>
+<div class="shaded">
+<p class="date">{{ cast.0.pub_date|date:"F j, Y" }}</p>
+<h3><a href="{{ cast.0.get_absolute_url }}">{{ cast.0.title|safe }}</a></h3>
+{{ cast.0.summary|safe }}
+<p>
+</div>
+</div>
+{% endblock %}
