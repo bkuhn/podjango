@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <title>{% block title %}{% block subtitle %}{% endblock %}Free as in Freedom{% endblock %}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Free as in Freedom is a bi-weekly oggcast about legal, policy and other issues in Free, Libre and Open Source Software" />
+    <meta name="keywords" content="software, freedom, podjango, open source, gnu, GNU, Open Source, Free and Open Source, Free and Open Source Software, FLOSS, FOSS, protect, protection, help, policy, linux, non-profit, oggcast, podcast" />
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="/podjango.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    {% block head %}{% endblock %}
+  </head>
+
+  <body class="faif-{% block category %}other{% endblock %}">
+    <div id="podjangoheader">
+      <h1><a href="/">Free as in Freedom</a></h1>
+    </div>
+    <div id="navbar-outer">
+      <div id="navbar">
+	<ul>
+          <li class="overview"><a href="/overview/">Overview</a></li>
+          <li class="news"><a href="/news/">News</a></li>
+          <li class="blog"><a href="/blog/">Blog</a></li>
+	  <li class="Members"><a href="/members/">Member Projects &amp; Services</a></li>
+          <li class="About"><a href="/about/">About</a></li>
+	  <li class="donate"><a href="/donate/">Support podjango!</a></li>
+	</ul>
+      </div>
+      <div id="navbar-clear"></div>
+    </div>
+      {% block outercontent %}<div id="mainContent">{% block content %}{% endblock %}</div>{% endblock %}
+    <div id="podjangofooter">
+      <p class="copyright_info">{% block copyright_info %}This page is licensed under the <a href="http://creativecommons.org/licenses/by-nd/3.0/us/legalcode">Creative Commons Attribution-NoDerivs 3.0 United States License</a>.<br />If you would like to make a derivative work of this page (e.g. a translation), <a href="http://www.softwarefreedom.org/about/contact/"> please contact us</a>. {% endblock %}</p>
+    </div>
+  </body>
+</html>
