@@ -19,7 +19,7 @@
 
 from django.contrib.syndication.feeds import Feed
 from django.utils.feedgenerator import Rss201rev2Feed 
-from podjango.apps.staff.models import Person
+from podjango.apps.staff import Person
 from podjango.apps.cast.models import Cast
 
 from django.shortcuts import render_to_response
