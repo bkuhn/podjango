@@ -19,6 +19,7 @@
 
 from django.conf.urls.defaults import *
 from podjango.feeds import feed_dict
+from django.contrib import admin
 
 #handler404 = 'modpythoncustom.view404'
 
