@@ -27,4 +27,5 @@ urlpatterns = patterns('',
     (r'^feeds/(?P<url>.*)/?$', 'django.contrib.syndication.views.feed',
      {'feed_dict': feed_dict}),
     (r'^feeds/$', 'podjango.feeds.view'),
+    (r'^admin/(.*)', admin.site.root),)
 )
