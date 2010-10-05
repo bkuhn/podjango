@@ -27,6 +27,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', 'podjango.frontpage.view'),
+    (r'^cast/', include('podjango.apps.cast.urls')),
     (r'^feeds/(?P<url>.*)/?$', 'django.contrib.syndication.views.feed',
      {'feed_dict': feed_dict}),
     (r'^feeds/$', 'podjango.feeds.view'),
