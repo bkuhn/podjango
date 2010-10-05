@@ -1,0 +1,244 @@
+* { margin: 0; padding: 0; }
+img { border: 0; }
+body { margin: 0; padding: 0; }
+.clear { clear: both; }
+.hidden { display: none; }
+
+p, h1, h2, h3, h4, h5, h6, #mainContent ul, #mainContent ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+body {
+/*  font-family: "Lucida Grande",Verdana,Lucida,Helvetica,Arial,sans-serif; */
+  font-size: 95%;
+}
+
+a { text-decoration: none; color: #146624; }
+a:hover { text-decoration: underline; color: #665f14; }
+
+h1 { margin-top: .75em; margin-bottom: .5em; }
+h2 { margin-top: .75em; margin-bottom: .5em; }
+h3 { margin-top: .6em; margin-bottom: .4em; }
+
+#mainContent h1 { border-bottom: 1px solid #00334b; }
+#mainContent h2 { border-bottom: 1px solid #aaa; }
+
+#mainContent ul, #mainContent ol { padding-left: 1.5em; }
+
+#mainContent img { margin: 3px; }
+
+.internalNavigate { width: 19%; float: right; }
+#mainContent .internalNavigate ul { list-style-type: none; padding-left: 0; }
+.internalNavigate ul li { margin-top: .3em; margin-bottom: .3em; }
+
+.affiliate-link { float: right; }
+#affiliate-conservancy, #affiliate-mr {
+  padding: 2px 10px;
+  white-space: nowrap;
+  font-size: x-small;
+  text-align: right;
+}
+#affiliate-conservancy { background: #d4ff9d; }
+#affiliate-mr { background: #ddd; }
+
+/* Header */
+
+#conservancyheader {
+  height: 140px;
+/*  background-color: #d1ff96; */
+/*  background-color: #92CC58; */
+/*  background-color: #BDD8A2; */
+/*  background-color: #92cc58; */
+/*  background-color: #b5cd9d; */
+  background-color: #afe578;
+  border-bottom: 1px solid #808080;
+}
+#conservancyheader h1 {
+  text-indent: -5000px;
+  margin: 0; /* hide in favor of image */
+}
+#logobutton {
+  display: block;
+  position: absolute; left: 17px; top: 10px; height: 120px; width: 440px;
+  background: url(/img/conservancy-header.png)  left center no-repeat;
+}
+
+/* Navigation bar */
+#navbar-outer { background: #CDDBDC; }
+#navbar { margin-left: 104px; margin-top: 3px; float: left; display: inline; }
+#navbar ul { list-style: none; }
+#navbar-clear { clear: both; border-bottom: 1px solid #808080; }
+#navbar li a {
+  display: block;
+  background: #fafafe;
+  padding: .2em .8em;
+  margin-right: 3px;
+  border: 1px solid #808080;
+  font-size: .8em;
+  background: #fff url(/img/nav-bg.png) bottom repeat-x;
+}
+#navbar li:hover a { background: #fff99d; }
+#navbar li { float: left; display: inline; margin-bottom: 3px; }
+
+#mainContent {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#container {
+    width: 100%;
+    overflow: hidden;
+}
+#container #mainContent {
+    background: #fffff;
+    margin-left: 210px;
+    margin-right: 50px;
+    padding-bottom: 32767px;
+    margin-bottom: -32767px;
+}
+#container #sidebar {
+    width: 200px;
+    float: left;
+    padding-bottom: 32767px;
+    margin-bottom: -32767px;
+    background-color: #e5e5e5; 
+}
+
+#container #sidebar li {
+    text-align: center;
+    list-style: none;
+    padding: 3px 10px 3px 10px; 
+    margin: 5px; 
+    border: 1px solid #CCC;
+    background: #fff url(/img/nav-bg.png) bottom repeat-x;
+}
+
+#container #sidebar.Directors ul li.Directors,
+#container #sidebar.Contact ul li.Contact,
+#container #sidebar.Officers ul li.Officers,
+#container #sidebar.Staff ul li.Staff,
+#container #sidebar.Current ul li.Current,
+#container #sidebar.Services ul li.Services,
+#container #sidebar.Applying ul li.Applying
+{
+    color: #000033;
+    font-weight: bold;
+    background: #fff url(/img/nav-bg-up.png) top repeat-x;
+}
+#container #sidebar h2 {
+    text-align: center;
+    font-size: 150%;
+    margin: 1.5em 0 0.8em 0;
+}
+#container #sidebar hr {
+    width: 75%;
+    float: center;
+    clear: all;
+}
+
+/* Navbar Submenus (currently unused) */
+#navbar li ul { display: none; border: 1px solid #444; }
+#navbar li:hover ul { display: block; position: absolute; }
+#navbar li ul li { float: none; }
+#navbar li ul li a { border: 0px; margin: 0px; }
+
+.shaded { background: #ffeab7; padding: .1em .5em; margin-bottom: .5em; }
+
+.columns {
+    width: 100%;
+    overflow: hidden;
+}
+
+.column-small {
+    width: 31%;
+    padding-bottom: 32767px;
+    margin-bottom: -32767px;
+ }
+.column-large {
+    margin-left: 35%;
+    margin-right: 50px;
+    padding-bottom: 32767px;
+    margin-bottom: -32767px;
+}
+
+.column-left { float: left; }
+.column-right { float: right; }
+
+.column h2 { font-size: 1.25em; }
+.column h3 { font-size: 1.1em; }
+
+.column h2 a { text-decoration: none; color: #000000; }
+.column h2 a:hover { text-decoration: underline; }
+
+#conservancyfooter {
+  margin-top: 1em;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  clear: both;
+}
+
+span.continued {
+  display: block;
+  font-size: .83em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+p.date {
+  font-style: italic;
+  font-size: .83em;
+  margin-bottom: .3em;
+  margin-top: .3em;
+}
+
+a.feedlink /* RSS icon */ { display: block; float: right; font-size: 10pt; }
+
+blockquote, div.quote /* div.quote is used by conservancy whitepaper */ {
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 1px solid #fff;
+  background: #eee;
+}
+
+.newsgraphic { float: right; }
+.newsgraphic img { border: 1px solid #000; }
+
+.secondary_info { font-size: 83%; }
+.next_page_button { float: right; }
+.document_format { border: 1px solid #888; padding: .2em; background: #fff99d;}
+.copyright_info { font-size: 90%; }
+hr.footnote-separator { width: 80%; margin-left: auto; margin-right: auto; }
+
+/* Resources pages */
+div.download-formats { margin-top: 2em; margin-bottom: 2em; }
+.download-formats p { display: inline; }
+#mainContent .download-formats ul { display: inline; list-style: none;
+                                    padding-left: 0; }
+.download-formats ul li { display: inline; padding-left: 2em; }
+
+/* Resources - book styles */
+hr.chapter-separator { display: none; }
+h2.likechapterHead { text-align: center; }
+h2.chapterHead { text-align: center; }
+#mainContent ul.author { list-style-type: none; padding-left: 0; }
+#mainContent div.footnotes { font-style: normal; } /* remove italics */
+span.sectionToc { padding-left: 2em; } /* indent TOC properly */
+span.subsectionToc { padding-left: 4em; }
+span.subsubsectionToc { padding-left: 6em;}
+.js, .js p, .js p.bibitem, .js p.bibitem-p { background-color: #cde7e9; }
+
+body.conservancy-overview #navbar ul li.overview a,
+body.conservancy-Members #navbar ul li.Members a,
+body.conservancy-news #navbar ul li.news a,
+body.conservancy-blog #navbar ul li.blog a,
+body.conservancy-About #navbar ul li.About a,
+body.conservancy-donate #navbar ul li.donate a /* NO COMMA HERE! */
+{ 
+    color: #000033;
+    font-weight: bold;
+    background: #fff url(/img/nav-bg-up.png) top repeat-x;
+}
