@@ -1,4 +1,4 @@
-#  Copyright (C) 2008       Bradley M. Kuhn <bkuhn@ebb.org>
+#  Copyright (C) 2008, 2010 Bradley M. Kuhn <bkuhn@ebb.org>
 #  Copyright (C) 2006, 2007 Software Freedom Law Center, Inc.
 #
 # This software's license gives you freedom; you can copy, convey,
@@ -17,17 +17,10 @@
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# FIXME: There are lot of SFLC hard-codes in this file.
-
 from django.contrib.syndication.feeds import Feed
 from django.utils.feedgenerator import Rss201rev2Feed 
-from sflc.apps.blog.models import Entry as BlogEntry
-from sflc.apps.blog.models import EntryTag as BlogEntryTag
-from sflc.apps.staff.models import Person
-from sflc.apps.news.models import PressRelease
-from sflc.apps.podcast.models import Podcast
-from sflc.apps.events.models import Event, EventMedia
-from sflc.apps.events.view_helpers import organize_media_by_event
+from podjango.apps.staff.models import Person
+from podjango.apps.cast.models import Cast
 
 from django.shortcuts import render_to_response
 from django.conf import settings
@@ -36,8 +29,11 @@ from datetime import datetime
 import itertools
 import operator
 
-class SFLCFeedBase(Feed):
-    def copyright_holder(self): return "Software Freedom Law Center"
+# FIXME: Settings here should not be hard-coded for given casts, but
+# should instead have settings from the main screen.
+
+class CastFeedBase(Feed):
+    def copyright_holder(self): return "Bradley M. Kuhn, Karen M. Sandler"
 
     def license_no_html(self): return "Licensed under a Creative Commons Attribution-No Derivative Works 3.0 United States License."
 
@@ -61,28 +57,28 @@ class SFLCFeedBase(Feed):
 
 def for_podcast_feed_extra_kwargs(self, obj):
     return { 'managingEditorNames' : 'Bradley and Karen',
-             'rssImage' : { 'url' : 'http://www.softwarefreedom.org/img/podcast/sflc-key-200x200.jpg',
+             'rssImage' : { 'url' : 'http://faif.us/img/podcast/sflc-key-200x200.jpg',
                             'width' : '200', 'height' : '200' },
-             'webMaster' : 'press@softwarefreedom.org',
-             'dcCreator' : 'podcast@softwarefreedom.org (Bradley and Karen)',
+             'webMaster' : 'oggcast@faif.org',
+             'dcCreator' : 'oggcast@faif.org (Bradley and Karen)',
              'iTunesExplicit'  : 'No',
              'iTunesBlock' : 'No',
-             'iTunesImage' : { 'url' : 'http://www.softwarefreedom.org/img/podcast/sflc-key-blue-background-with-text_300x300.jpg',
-                               'title' : 'Software Freedom Law Center',
-                               'link' : self.author_link,
-                               'type' : 'video/jpg'},
+#             'iTunesImage' : { 'url' : 'FIXME',
+#                               'title' : 'Software Freedom Law Center',
+#                               'link' : self.author_link,
+#                               'type' : 'video/jpg'},
              'category' : { 'name' : 'Technology', 'scheme' : 'http://www.itunes.com/dtds/podcast-1.0.dtd',
                             'subcats' : [ 'Computers', 'Information Technology', 'Operating Systems' ] },
              'keywords' : 'open source opensource freesoftware software freedom legal law linux free license gpl lgpl agpl bsd',
-             'iTunesAuthor' : 'Software Freedom Law Center',
-             'iTunesSubtitle' : 'Bi-Weekly Discussion of Legal Issues in the Free, Libre, and Open Source Software (FLOSS) World',
+             'iTunesAuthor' : 'Free as in Freedom',
+             'iTunesSubtitle' : 'Bi-Weekly Discussion of Legal, Policy, and Any other Issues in the Free, Libre, and Open Source Software (FLOSS) World',
              'copyrightHolder' : self.copyright_holder(),
              'copyrightLicense' : self.license_no_html() }
 
 def for_podcast_item_extra_kwargs(self, item):
     return { 'duration' : item.duration,
              'year' : item.date_created.year,
-             'dcCreator' : 'podcast@softwarefreedom.org (Bradley and Karen)',
+             'dcCreator' : 'oggcast@faif.us (Bradley and Karen)',
              'intheitembkuhn' : item.__dict__.__str__()}
 
 def podcast_helper_add_root_elements(self, handler):
@@ -100,7 +96,7 @@ def podcast_helper_add_root_elements(self, handler):
     handler.addQuickElement('dc:creator', self.feed['dcCreator'])
     handler.addQuickElement('itunes:explicit', self.feed['iTunesExplicit'])
     handler.addQuickElement('itunes:block', self.feed['iTunesBlock'])
-    handler.addQuickElement('generator', 'http://www.softwarefreedom.org/code')
+    handler.addQuickElement('generator', 'http://www.faif.us/code')
     
     handler.addQuickElement('media:thumbnail', '' , { 'url' : self.feed['rssImage']['url'] })
     handler.startElement('itunes:image', {})
@@ -186,242 +182,6 @@ class OmnibusFeedType(Rss201rev2Feed):
             handler.addQuickElement("itunes:block", 'Yes')
 
 
-class OmnibusFeed(SFLCFeedBase):
-    feed_type = OmnibusFeedType
-    link ="/omnibus/"
-    title = "The Software Freedom Law Center"
-    description = "An aggregated feed of all RSS content available from the Software Freedom Law Center, including news items, blogs, podcasts, and future events."
-    title_template = "feeds/omnibus_title.html"
-    description_template = "feeds/omnibus_description.html"
-    author_email = "info@softwarefreedom.org"
-    author_link = "http://www.softwarefreedom.org/"
-    author_name = "Software Freedom Law Center"
-
-    def item_enclosure_mime_type(self): return "audio/mpeg"
-
-    def item_enclosure_url(self, item):
-        if hasattr(item, 'mp3_path'):
-            return "http://www.softwarefreedom.org" + item.mp3_path
-    def item_enclosure_length(self, item):
-        if hasattr(item, 'mp3_path'):
-            return item.mp3_length
-
-    def item_pubdate(self, item):
-        return item.pub_date
-
-    def item_author_name(self, item):
-        if item.omnibus_type == "blog":
-            return item.author.formal_name
-        elif item.omnibus_type == "podcast":
-            return "Software Freedom Law Show"
-        else:
-            return "Software Freedom Law Center"
-
-    def item_author_link(self, obj):
-        return "http://www.softwarefreedom.org"
-
-    def item_author_email(self, item):
-        if item.omnibus_type == "news":
-            return "press@softwarefreedom.org"
-        elif item.omnibus_type == "podcast":
-            return "podcast@softwarefreedom.org"
-        elif hasattr(item, 'author'):
-            return "%s@softwarefreedom.org" % item.author
-        else:
-            return "info@softwarefreedom.org"
-
-    def item_pubdate(self, item):
-        if item.omnibus_type == "event":
-            return item.date_created
-        else:
-            return item.pub_date
-
-    def item_link(self, item):
-        return item.get_absolute_url()
-
-# http://groups.google.ca/group/django-users/browse_thread/thread/d22e8a8f378cf0e2
-
-    def items(self):
-        blogs = BlogEntry.objects.filter(pub_date__lte=datetime.now()).order_by('-pub_date')[:25]
-        for bb in blogs:
-            bb.omnibus_type = "blog"
-            bb.omnibus_feed_description_template = "feeds/blog_description.html"
-            bb.omnibus_feed_title_template = "feeds/blog_title.html"
-
-        news = PressRelease.objects.filter(pub_date__lte=datetime.now(),
-                                           sites__id__exact=settings.SITE_ID).order_by('-pub_date')[:25]
-        for nn in news:
-            nn.omnibus_type = "news"
-            nn.omnibus_feed_description_template = "feeds/news_description.html"
-            nn.omnibus_feed_title_template = "feeds/news_title.html"
-
-
-        events = Event.future.order_by('-date_created')[:25]
-        for ee in events:
-            ee.omnibus_type = "event"
-            ee.omnibus_feed_description_template = "feeds/future-events_description.html"
-            ee.omnibus_feed_title_template = "feeds/future-events_title.html"
-            # events don't have a pub_date, so change it to date_created
-
-        podcasts =  Podcast.objects.filter(pub_date__lte=datetime.now()).order_by('-pub_date')
-        for pp in podcasts:
-            pp.omnibus_type = "podcast"
-            pp.omnibus_feed_description_template = "feeds/podcast_description.html"
-            pp.omnibus_feed_title_template = "feeds/podcast_title.html"
-
-        a  = [ ii for ii in itertools.chain(blogs, news, events, podcasts)]
-        a.sort(key=operator.attrgetter('pub_date'), reverse=True)
-        return a
-
-    def feed_extra_kwargs(self, obj):
-        # Currently podcast feed is the only one that has a special dict
-        # returned here.
-        return for_podcast_feed_extra_kwargs(self, obj)
-
-    def item_extra_kwargs(self, item):
-        # Currently podcast feed is the only one that has a special dict
-        # returned here.
-        if item.omnibus_type == 'podcast':
-            return for_podcast_item_extra_kwargs(self, item)
-        else:
-            return super(OmnibusFeed, self).item_extra_kwargs(item)
-
-class BlogFeed(SFLCFeedBase):
-    link = "/blog/"
-
-    def title(self):
-        answer = "The Software Freedom Law Center Blog"
-
-        GET = self.request.GET
-        tags = []
-        if 'author' in GET:
-            tags = GET.getlist('author')
-        if 'tag' in GET:
-            tags += GET.getlist('tag')
-
-        if len(tags) == 1:
-            answer += " (" + tags[0] + ")"
-        elif len(tags) > 1:
-            firstTime = True
-            done = {}
-            for tag in tags:
-                if done.has_key(tag): continue
-                if firstTime:
-                    answer += " ("
-                    firstTime = False
-                else:
-                    answer += ", "
-                answer += tag
-                done[tag] = tag
-            answer += ")"
-        else:
-            answer += "."
-        return answer
-        
-    def description(self):
-        answer = "Blogs at the Software Freedom Law Center"
-
-        GET = self.request.GET
-        tags = []
-        if 'author' in GET: tags = GET.getlist('author')
-        if 'tag' in GET:    tags += GET.getlist('tag')
-
-        done = {}
-        if len(tags) == 1:
-            answer += " tagged with " + tags[0]
-        elif len(tags) > 1:
-            firstTime = True
-            for tag in tags:
-                if done.has_key(tag): continue
-                if firstTime:
-                    answer += " tagged with "
-                    firstTime = False
-                else:
-                    answer += " or "
-                answer += tag
-                done[tag] = tag
-        else:
-            answer = "All blogs at the Software Freedom Law Center"
-        answer += "."
-
-        return answer
-        
-    def item_author_name(self, item):
-        return item.author.formal_name
-
-    def item_author_email(self, item):
-        GET = self.request.GET
-        if not 'author' in GET:
-            return "%s@softwarefreedom.org" % item.author
-        else:
-            answer = ""
-            authors = GET.getlist('author')
-            firstTime = True
-            for author in authors:
-                if not firstTime:
-                    answer = "%s@softwarefreedom.org" % author
-                    firstTime = False
-                else:
-                    answer += ",%s@softwarefreedom.org" % author
-
-    def item_pubdate(self, item):
-        return item.pub_date
-    def items(self):
-        GET = self.request.GET
-
-        def OR_filter(field_name, subfield_name, objs):
-            from django.db.models import Q
-            return reduce(lambda x, y: x | y,
-                          [Q(**{'%s__%s' % (field_name, subfield_name): x})
-                           for x in objs])
-
-        queryset = BlogEntry.objects.filter(pub_date__lte=datetime.now())
-
-        if 'author' in GET:
-            authors = GET.getlist('author')
-            queryset = queryset.filter(OR_filter('author', 'username', authors))
-
-        if 'tag' in GET:
-            tags = GET.getlist('tag')
-            queryset = queryset.filter(OR_filter('tags', 'slug', tags))
-
-        return queryset.order_by('-pub_date')[:10]
-
-class TechBlogFeed(BlogFeed):
-    title = "Bradley M. Kuhn's SFLC Blog"
-    link = "/blog/?author=bkuhn"
-    description = "The Software Freedom Law Center Blog,  written by our Policy Analyst and Technology Director, Bradley M. Kuhn."
-
-    def items(self):
-        return BlogEntry.objects.filter(author__username__exact="bkuhn", pub_date__lte=datetime.now()).order_by('-pub_date')[:10]
-
-class PressReleaseFeed(SFLCFeedBase):
-    title = "SFLC News Releases"
-    link = "/news/"
-    description = "News releases from the Software Freedom Law Center."
-
-    def items(self):
-        return PressRelease.objects.filter(pub_date__lte=datetime.now(),
-                                           sites__id__exact=settings.SITE_ID).order_by('-pub_date')[:10]
-
-    def item_pubdate(self, item):
-        return item.pub_date
-
-class UpcomingEventFeed(SFLCFeedBase):
-    title = "SFLC Upcoming Events"
-    link = "/events/"
-    description = "Upcoming appearances by the staff of the Software Freedom Law Center and other events related to software freedom where the SFLC will participate."
-
-    def items(self):
-        return Event.future.order_by('-date_created')[:10]
-
-    def item_pubdate(self, item):
-        return item.date_created
-
-class RecentEventMediaFeed(SFLCFeedBase):
-    title = "SFLC Recent Event Media"
-    link = "/events/"
-    description = "Audio, video and transcripts from SFLC engagements"
 
 # http://www.feedforall.com/itune-tutorial-tags.htm
 # http://www.feedforall.com/mediarss.htm
@@ -443,18 +203,18 @@ class iTunesFeedType(Rss201rev2Feed):
         podcast_helper_add_item_elements(self, handler, item)
 
 
-class PodcastFeed(SFLCFeedBase):
+class CastFeed(CastFeedBase):
     feed_type = iTunesFeedType
-    title = "The Software Freedom Law Show"
+    title = "Free as in Freedom"
     link = "/podcast/"
-    description = "A bi-weekly discussion of legal issues in the FLOSS world, including interviews, from the Software Freedom Law Center offices in New York.  Presented by Karen Sandler and Bradley M. Kuhn."
-    author_email = "podcast@softwarefreedom.org"
-    author_link = "http://www.softwarefreedom.org/"
-    author_name = "Software Freedom Law Show"
+    description = "A bi-weekly discussion of legal, policy, and other issues in the FLOSS world, including interviews from Brooklyn, New York, USA.  Presented by Karen Sandler and Bradley M. Kuhn."
+    author_email = "podcast@faif.us"
+    author_link = "http://www.faif.us/"
+    author_name = "Free as in Freedom"
     title_template = "feeds/podcast_title.html"
     description_template = "feeds/podcast_description.html"
     def items(self):
-        return Podcast.objects.filter(pub_date__lte=datetime.now()).order_by('-pub_date')
+        return Cast.objects.filter(pub_date__lte=datetime.now()).order_by('-pub_date')
     def item_pubdate(self, item):
         return item.pub_date
 
@@ -462,18 +222,18 @@ class PodcastFeed(SFLCFeedBase):
         return item.get_absolute_url()
 
     def item_author_email(self, obj):
-        return "podcast@softwarefreedom.org"
+        return "podcast@faif.us"
 
     def item_author_name(self, obj):
-        return "Software Freedom Law Show"
+        return "Free as in Freedom"
 
     def item_author_link(self, obj):
-        return "http://www.softwarefreedom.org"
+        return "http://www.faif.us"
 
     def item_categories(self, item):
         return  ('Technology',)
 
-    def copyright_holder(self): return "Software Freedom Law Center"
+    def copyright_holder(self): return "Free as in Freedom"
 
     def license_no_html(self): return "Licensed under a Creative Commons Attribution-No Derivative Works 3.0 United States License."
 
@@ -490,24 +250,24 @@ class PodcastFeed(SFLCFeedBase):
 #     about the person(s) featured on a specific episode.
 
 
-class Mp3PodcastFeed(PodcastFeed):
+class Mp3CastFeed(CastFeed):
     def item_enclosure_mime_type(self): return "audio/mpeg"
     def item_enclosure_url(self, item):
-        return "http://www.softwarefreedom.org" + item.mp3_path
+        return "http://www.faif.us" + item.mp3_path
     def item_enclosure_length(self, item):
         return item.mp3_length
 
-class OggPodcastFeed(PodcastFeed):
+class OggCastFeed(CastFeed):
     def item_enclosure_mime_type(self): return "audio/ogg"
     def item_enclosure_url(self, item):
-        return "http://www.softwarefreedom.org" + item.ogg_path
+        return "http://www.faif.us" + item.ogg_path
     def item_enclosure_length(self, item):
         return item.ogg_length
 
 feed_dict = {
     'blog': BlogFeed,
-    'podcast-ogg': OggPodcastFeed,
-    'podcast-mp3': Mp3PodcastFeed,
+    'podcast-ogg': OggCastFeed,
+    'podcast-mp3': Mp3CastFeed,
     'techblog': TechBlogFeed,
     'news': PressReleaseFeed,
     'future-events': UpcomingEventFeed,
