@@ -265,14 +265,8 @@ class OggCastFeed(CastFeed):
         return item.ogg_length
 
 feed_dict = {
-    'blog': BlogFeed,
     'podcast-ogg': OggCastFeed,
     'podcast-mp3': Mp3CastFeed,
-    'techblog': TechBlogFeed,
-    'news': PressReleaseFeed,
-    'future-events': UpcomingEventFeed,
-    'omnibus': OmnibusFeed,
-#    'event-media': RecentEventMediaFeed,
 }
 
 # make each feed know its canonical url
