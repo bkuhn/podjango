@@ -18,7 +18,7 @@
 #
 from django.db import models
 from django.conf import settings
-from podjango.apps.staff.models import Person
+#from podjango.apps.staff.models import Person
 from datetime import datetime, timedelta
 
 class CastTag(models.Model):
@@ -44,7 +44,7 @@ class Cast(models.Model):
     summary = models.TextField(help_text="Use raw HTML.  This summary is not included at the beginning of the body when the entry is displayed.  It used only for the material on the front page.")
     body = models.TextField(help_text="Use raw HTML.  Include the full body of any show notes or other information about this episode.  It will be labelled on the site as Show Notes.  It is included on the detail entry, and in the description data on the podcast RSS feed.")
     pub_date = models.DateTimeField()
-    poster = models.ForeignKey(Person)
+#    poster = models.ForeignKey(Person)
     tags = models.ManyToManyField(CastTag, null=True, blank=True)
     ogg_path = models.CharField(max_length=300, blank=True,
                              help_text="Local filename of the Ogg file, relative to webroot.  File should be uploaded into the static media area for podcasts.")
@@ -66,7 +66,7 @@ class Cast(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return u"/podcast/%s/%s/" % (self.pub_date.strftime("%Y/%b/%d").lower(),
+        return u"/cast/%s/%s/" % (self.pub_date.strftime("%Y/%b/%d").lower(),
                                   self.slug)
 # FIXME
 #        return (u"/podcast/%s/" % (self.slug))

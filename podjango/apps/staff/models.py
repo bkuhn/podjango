@@ -44,5 +44,5 @@ class Person(models.Model):
         return self.username
 
     def biography_url(self):
-        return u"/about/team/#%s" % self.username
+        return u"/about/#%s" % self.username
 
