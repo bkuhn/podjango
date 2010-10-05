@@ -18,7 +18,7 @@
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls.defaults import *
-from conservancy.feeds import feed_dict
+from podjango.feeds import feed_dict
 
 #handler404 = 'modpythoncustom.view404'
 
