@@ -18,7 +18,7 @@
 #
 from django.db import models
 from django.conf import settings
-from apps.staff.models import Person
+from podjango.apps.staff.models import Person
 from datetime import datetime, timedelta
 
 class CastTag(models.Model):
