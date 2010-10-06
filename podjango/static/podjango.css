@@ -45,7 +45,7 @@ h3 { margin-top: .6em; margin-bottom: .4em; }
 /* Header */
 
 #podjangoheader {
-  height: 140px;
+  height: 3em;
   background-color: #12d5bc;
   border-bottom: 1px solid #808080;
 }

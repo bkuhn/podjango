@@ -63,15 +63,15 @@ def for_podcast_feed_extra_kwargs(self, obj):
              'dcCreator' : 'oggcast@faif.org (Bradley and Karen)',
              'iTunesExplicit'  : 'No',
              'iTunesBlock' : 'No',
-#             'iTunesImage' : { 'url' : 'FIXME',
-#                               'title' : 'Software Freedom Law Center',
-#                               'link' : self.author_link,
-#                               'type' : 'video/jpg'},
+             'iTunesImage' : { 'url' : 'http://faif.us/img/podcast/faif_300x300.jpg',
+                               'title' : 'Free as in Freedom',
+                               'link' : self.author_link,
+                               'type' : 'video/jpg'},
              'category' : { 'name' : 'Technology', 'scheme' : 'http://www.itunes.com/dtds/podcast-1.0.dtd',
                             'subcats' : [ 'Computers', 'Information Technology', 'Operating Systems' ] },
              'keywords' : 'open source opensource freesoftware software freedom legal law linux free license gpl lgpl agpl bsd',
              'iTunesAuthor' : 'Free as in Freedom',
-             'iTunesSubtitle' : 'Bi-Weekly Discussion of Legal, Policy, and Any other Issues in the Free, Libre, and Open Source Software (FLOSS) World',
+             'iTunesSubtitle' : 'Bi-Weekly Discussion of Legal, Policy, and Any other Issues in the Free, Libre, and Open Source Software (FLOSS) Community',
              'copyrightHolder' : self.copyright_holder(),
              'copyrightLicense' : self.license_no_html() }
 
@@ -228,7 +228,7 @@ class CastFeed(CastFeedBase):
         return "Free as in Freedom"
 
     def item_author_link(self, obj):
-        return "http://www.faif.us"
+        return "http://faif.us"
 
     def item_categories(self, item):
         return  ('Technology',)
