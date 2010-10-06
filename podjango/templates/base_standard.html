@@ -18,7 +18,20 @@
     </div>
       {% block outercontent %}<div id="mainContent">{% block content %}{% endblock %}</div>{% endblock %}
     <div id="podjangofooter">
-{% block copyright_info %}{% endblock %}
+{% block copyright_info %}
+<p>Free as in Freedom is produced by <a href="http://danlynch.org/blog/">Dan Lynch</a>
+  of <a href="http://www.halfbakedmedia.com/">half baked media</a>.  Theme
+  music written and performed
+  by <a href="http://www.miketarantino.com">Mike Tarantino</a>
+  with <a href="http://www.charliepaxson.com">Charlie Paxson</a> on drums.</p>
+
+      <p><a href="/">Main Page</a> | <a href="/license/">License of show
+      and website</a>  | <a href="/feeds/cast-ogg/">Ogg Feed</a> | <a href="/feeds/cast-mp3/">MP3 Feed</a></p>
+      <p class="copyright_info">Please see the
+      <a href="/license">license page</a> for details about the licensing
+      of the show, the content of this website, and the software that runs
+      this website.</p>
+{% endblock %}
     </div>
   </body>
 </html>
