@@ -8,11 +8,11 @@
 
 {% block content %}
 
-<h1><a href="/feeds/podcast-ogg/"
-       class="feedlink"><img src="/img/podcast/rss-audioogg.png"
+<h1><a href="/feeds/cast-ogg/"
+       class="feedlink"><img src="/img/cast/rss-audioogg.png"
                              alt="[Ogg/Vorbis Audio RSS]"/></a>
-<a href="/feeds/podcast-mp3/"
-       class="feedlink"><img src="/img/podcast/rss-audiomp3.png"
+<a href="/feeds/cast-mp3/"
+       class="feedlink"><img src="/img/cast/rss-audiomp3.png"
                              alt="[MP3 Audio RSS]"/></a>
 The Software Freedom Law Show</h1>
 
@@ -44,14 +44,14 @@ running time is {{ object.duration}}.</p>
 
 <hr width="80%"/>
 
-<p>Send feedback and comments on the podcast
-to <a href="mailto:podcast@softwarefreedom.org">&lt;podcast@softwarefreedom.org&gt;</a>.
-You can keep in touch with <a href="http://www.softwarefreedom.org">the
-SFLC</a> on our IRC channel, #sflc on irc.freenode.net, and
-  by <a href="http://identi.ca/sflc">following SFLC on identi.ca</a>.</p>
+<p>Send feedback and comments on the oggcast
+to <a href="mailto:oggcast@faif.us">&lt;oggcast@faif.us&gt;</a>.
+You can keep in touch with <a href="http://faif.us">Free as in Freedom</a>
+on our IRC channel, #faif on irc.freenode.net, and
+by <a href="http://identi.ca/faif">following FiaF on identi.ca</a>.</p>
 
 {% if object.tags.all %}<p class="blog-tags">Tags: {% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
 
-<p><span class="continued"><a href="/podcast/">Other Software Freedom Law Show podcasts...</a></span></p>
+<p><span class="continued"><a href="/podcast/">Other FaiF oggcasts&hellip;</a></span></p>
 
 {% endblock %}
