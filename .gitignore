@@ -1,3 +1,6 @@
 *~
 djangocommonsettings.py
 *.pyc
+podjango/static/source
+podjango/static/cast-media
+
