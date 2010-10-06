@@ -45,12 +45,12 @@ h3 { margin-top: .6em; margin-bottom: .4em; }
 /* Header */
 
 #podjangoheader {
-  height: 3em;
+  height: 3.5em;
   background-color: #12d5bc;
   border-bottom: 1px solid #808080;
 }
 #podjangoheader h1 {
-  font-size: 400%;
+  font-size: 3em;
   /* -indent: -5000px; */
   /* margin: 0; /\* hide in favor of image *\/ */
 }
