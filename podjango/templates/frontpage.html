@@ -43,5 +43,5 @@ Bradley and Karen to discuss various topics regarding FLOSS.</p>
 <p class="date">{{ cc.pub_date|date:"F j, Y" }}</p>
 <h3><a href="{{ cc.get_absolute_url }}">{{ cc.title|safe }}</a></h3>
 {{ cc.summary|safe }}
-{% endif %}
+{% endfor %}
 {% endblock %}
