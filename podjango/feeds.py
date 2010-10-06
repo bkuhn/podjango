@@ -63,7 +63,7 @@ def for_podcast_feed_extra_kwargs(self, obj):
              'dcCreator' : 'oggcast@faif.org (Bradley and Karen)',
              'iTunesExplicit'  : 'No',
              'iTunesBlock' : 'No',
-             'iTunesImage' : { 'url' : 'http://faif.us/img/podcast/faif_300x300.jpg',
+             'iTunesImage' : { 'url' : 'http://faif.us/img/cast/faif_300x300.jpg',
                                'title' : 'Free as in Freedom',
                                'link' : self.author_link,
                                'type' : 'video/jpg'},
