@@ -18,7 +18,6 @@
 #
 from models import Cast, CastTag # relative import
 from django.views.generic.list_detail import object_list
-from apps.staff.models import Person
 from django.shortcuts import get_object_or_404, render_to_response
 from datetime import datetime
 
