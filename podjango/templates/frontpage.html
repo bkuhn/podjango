@@ -21,36 +21,27 @@ and Open Source Software (FLOSS) world.  Occasionally, guest join
 Bradley and Karen to discuss various topics regarding FLOSS.</p>
 </div>
 
-<div class="columns">
-
-<div class="column column-small column-left">
-<p>
 <h2>Follow FaiF's RSS</h2>
 
 <p>There is RSS for both <a href="/feeds/cast-ogg/">ogg format</a> and  <a href="/feeds/cast-mp3/">mp3 format</a>.</p>
 
 </div>
-
-<div class="column column-large">
-{% if cast.0.is_recent %}
-<h2>
-
 <a href="/feeds/cast-ogg/"
        class="feedlink"><img src="/img/cast/rss-audioogg.png"
                              alt="[Ogg/Vorbis Audio RSS]"/></a>
 <a href="/feeds/cast-mp3/"
        class="feedlink"><img src="/img/cast/rss-audiomp3.png"
-                             alt="[MP3 Audio RSS]"/></a><a href="/cast/">Free as in Freedom</a></h2>
-<a class="feedlink" href="{{ cast.0.ogg_path }}"><img alt="[Get cast in Ogg/Vorbis
+                             alt="[MP3 Audio
+       RSS]"/></a><a href="/cast/">Recent Free as in Freedom Shows</a></h2>
+
+{% for cc in cast %}
+<a class="feedlink" href="{{ cc.ogg_path }}"><img alt="[Get cast in Ogg/Vorbis
                                           format]" src="/img/cast/audio_ogg_button.png"/></a>
-<a class="feedlink" href="{{ cast.0.mp3_path }}"><img alt="[Get cast in MP3 format]"
+<a class="feedlink" href="{{ cc.mp3_path }}"><img alt="[Get cast in MP3 format]"
                                      src="/img/cast/audio_mp3_button.png"/></a>
 <div class="shaded">
-<p class="date">{{ cast.0.pub_date|date:"F j, Y" }}</p>
-<h3><a href="{{ cast.0.get_absolute_url }}">{{ cast.0.title|safe }}</a></h3>
-{{ cast.0.summary|safe }}
+<p class="date">{{ cc.pub_date|date:"F j, Y" }}</p>
+<h3><a href="{{ cc.get_absolute_url }}">{{ cc.title|safe }}</a></h3>
+{{ cc.summary|safe }}
 {% endif %}
-</div>
-</div>
-</div>
 {% endblock %}
