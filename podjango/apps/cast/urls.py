@@ -54,8 +54,8 @@ def all_tags_by_use_amount():
     # tally use amount
     retval = []
     current = None
-    for obj in CastTag.objects.filter(podcast__pub_date__lte=datetime.now(),
-                                       podcast__isnull=False).order_by('label'):
+    for obj in CastTag.objects.filter(cast__pub_date__lte=datetime.now(),
+                                       cast__isnull=False).order_by('label'):
         if current is not None and obj.id == current.id:
             current.cnt += 1
         else:

@@ -70,7 +70,7 @@ def custom_index(request, queryset, *args, **kwargs):
     return object_list(request, queryset, *args, **kwargs)
 
 def query(request):
-    """Page to query the podcast based on and tags
+    """Page to query the cast based on and tags
     """
 
     if request.GET:
@@ -81,9 +81,9 @@ def query(request):
             d.setlist('tag', []) # remove tag queries
         d.setlist('all', []) # remove "all" from the query string
 
-        base_url = '/podcast/'
+        base_url = '/cast/'
         if 'rss' in d:
-            base_url = '/feeds/podcast/'
+            base_url = '/feeds/cast/'
             d.setlist('rss', []) # remove it
 
         query_string = d.urlencode()
@@ -92,7 +92,7 @@ def query(request):
 
     else:
         tags = CastTag.objects.all().order_by('label')
-        return render_to_response('podcast/query.html', {'tags': tags})
+        return render_to_response('cast/query.html', {'tags': tags})
 
 def relative_redirect(request, path):
     from django import http
