@@ -5,11 +5,9 @@
 
 {% extends "base_standard.html" %}
 
-{% block category %}podcast{% endblock %}
-
 {% block head %}
-<link rel="alternate" type="application/rss+xml" title="MP3 Audio Feed for Free as in Freedom" href="/feeds/podcast-mp3/" />
-<link rel="alternate" type="application/rss+xml" title="Ogg/Vorbis Audio Feed for Free as in Freedom" href="/feeds/podcast-ogg/" />
+<link rel="alternate" type="application/rss+xml" title="MP3 Audio Feed for Free as in Freedom" href="/feeds/cast-mp3/" />
+<link rel="alternate" type="application/rss+xml" title="Ogg/Vorbis Audio Feed for Free as in Freedom" href="/feeds/cast-ogg/" />
 {% endblock %}
 
 {% block internal_navigate %}
@@ -21,14 +19,14 @@
 {% endfor %}
 </ul>
 
-<p><a href="/podcast/">All podcasts...</a></p>
+<p><a href="/cast/">All oggcasts...</a></p>
 <!-- Query is not working right now! -->
 <!-- <p><a href="/podcast/query/">Query...</a></p> -->
 
 {% endblock %}
 
 {% block copyright_info %}
-<p>Free as in Freedom is produced by <a href="http://adventuresinopensource.blogspot.com/">Dan Lynch</a>
+<p>Free as in Freedom is produced by <a href="http://danlynch.org/blog/">Dan Lynch</a>
   of <a href="http://www.halfbakedmedia.com/">half baked media</a>.  Theme
   music written and performed
   by <a href="http://www.miketarantino.com">Mike Tarantino</a>
@@ -41,7 +39,7 @@
    /></a><br />The content
    of <span xmlns:dc="http://purl.org/dc/elements/1.1/"
    href="http://purl.org/dc/dcmitype/Sound" rel="dc:type">our
-   podcasts</span> and the accompanying show notes are licensed under
+   oggcasts</span> and the accompanying show notes are licensed under
    a <a rel="license"
    href="http://creativecommons.org/licenses/by-nd/3.0/us/">Creative
    Commons Attribution-No Derivative Works 3.0 United States License</a>.</p>
