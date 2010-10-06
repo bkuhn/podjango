@@ -8,16 +8,16 @@
 
 {% block content %}
 
-<h1><a href="/feeds/podcast-ogg/"
-       class="feedlink"><img src="/img/podcast/rss-audioogg.png"
+<h1><a href="/feeds/cast-ogg/"
+       class="feedlink"><img src="/img/cast/rss-audioogg.png"
                              alt="[Ogg/Vorbis Audio RSS]"/></a>
-<a href="/feeds/podcast-mp3/"
-       class="feedlink"><img src="/img/podcast/rss-audiomp3.png"
+<a href="/feeds/cast-mp3/"
+       class="feedlink"><img src="/img/cast/rss-audiomp3.png"
                              alt="[MP3 Audio RSS]"/></a>
 Free as in Freedom</h1>
 
 {% if tags %}
-<p>Displaying podcasts
+<p>Displaying casts
 tagged {% for tag in tags %}{% if not forloop.last %}{% if not forloop.first %}, {% endif %}{% endif %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% ifequal forloop.revcounter 2 %} or {% endifequal %}{% endfor %}
 </p>
 {% endif %}
@@ -26,10 +26,10 @@ tagged {% for tag in tags %}{% if not forloop.last %}{% if not forloop.first %},
     <div class="shaded">
     <p class="date">{{ object.pub_date|date:"F j, Y" }}</p>
     <h3>
-<a class="feedlink" href="{{ object.ogg_path }}"><img alt="[Get podcast in Ogg/Vorbis
-                                          format]" src="/img/podcast/audio_ogg_button.png"/></a>
-<a class="feedlink" href="{{ object.mp3_path }}"><img alt="[Get podcast in MP3 format]"
-                                     src="/img/podcast/audio_mp3_button.png"/></a>
+<a class="feedlink" href="{{ object.ogg_path }}"><img alt="[Get cast in Ogg/Vorbis
+                                          format]" src="/img/cast/audio_ogg_button.png"/></a>
+<a class="feedlink" href="{{ object.mp3_path }}"><img alt="[Get cast in MP3 format]"
+                                     src="/img/cast/audio_mp3_button.png"/></a>
 
 <a href="{{ object.get_absolute_url }}">{{ object.title|safe }}</a></h3>
     <h4>Summary</h4>
@@ -42,7 +42,7 @@ tagged {% for tag in tags %}{% if not forloop.last %}{% if not forloop.first %},
     <h4>Show Notes</h4>
     {{ object.body|safe }}
     <br/>
-    {% if object.tags.all %}<p class="podcast-tags small">Tags: {% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+    {% if object.tags.all %}<p class="cast-tags small">Tags: {% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.label }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
     </div>
 {% endfor %}
 
