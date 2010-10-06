@@ -222,7 +222,7 @@ class CastFeed(CastFeedBase):
         return item.get_absolute_url()
 
     def item_author_email(self, obj):
-        return "podcast@faif.us"
+        return "oggcast@faif.us"
 
     def item_author_name(self, obj):
         return "Free as in Freedom"
@@ -253,14 +253,14 @@ class CastFeed(CastFeedBase):
 class Mp3CastFeed(CastFeed):
     def item_enclosure_mime_type(self): return "audio/mpeg"
     def item_enclosure_url(self, item):
-        return "http://www.faif.us" + item.mp3_path
+        return "http://faif.us" + item.mp3_path
     def item_enclosure_length(self, item):
         return item.mp3_length
 
 class OggCastFeed(CastFeed):
     def item_enclosure_mime_type(self): return "audio/ogg"
     def item_enclosure_url(self, item):
-        return "http://www.faif.us" + item.ogg_path
+        return "http://faif.us" + item.ogg_path
     def item_enclosure_length(self, item):
         return item.ogg_length
 
@@ -278,5 +278,4 @@ def view(request):
     """
 
     feeds = feed_dict.values()
-    feeds.remove(TechBlogFeed)
     return render_to_response("feeds.html", {'feeds': feeds})
