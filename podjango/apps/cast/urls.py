@@ -18,7 +18,6 @@
 #
 from django.conf.urls.defaults import *
 from models import Cast, CastTag # relative import
-from apps.staff.models import Person
 from datetime import datetime
 
 extra_context = {}
