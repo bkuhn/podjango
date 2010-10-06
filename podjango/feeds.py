@@ -57,7 +57,7 @@ class CastFeedBase(Feed):
 
 def for_podcast_feed_extra_kwargs(self, obj):
     return { 'managingEditorNames' : 'Bradley and Karen',
-             'rssImage' : { 'url' : 'http://faif.us/img/podcast/sflc-key-200x200.jpg',
+             'rssImage' : { 'url' : 'http://faif.us/img/cast/sflc-key-200x200.jpg',
                             'width' : '200', 'height' : '200' },
              'webMaster' : 'oggcast@faif.org',
              'dcCreator' : 'oggcast@faif.org (Bradley and Karen)',
@@ -206,7 +206,7 @@ class iTunesFeedType(Rss201rev2Feed):
 class CastFeed(CastFeedBase):
     feed_type = iTunesFeedType
     title = "Free as in Freedom"
-    link = "/podcast/"
+    link = "/cast/"
     description = "A bi-weekly discussion of legal, policy, and other issues in the FLOSS world, including interviews from Brooklyn, New York, USA.  Presented by Karen Sandler and Bradley M. Kuhn."
     author_email = "podcast@faif.us"
     author_link = "http://www.faif.us/"
