@@ -38,7 +38,7 @@ urlpatterns = patterns('django.views.generic.date_based',
 #   (r'^(?P<slug>[-\w]+)/$', 'object_detail', dict(info_dict, slug_field='slug')),
 )
 
-urlpatterns += patterns('apps.podcast.views',
+urlpatterns += patterns('podjango.apps.cast.views',
    (r'^/?$', 'custom_index', dict(info_dict, paginate_by=20)),
    (r'^query/$', 'query'),
 )
