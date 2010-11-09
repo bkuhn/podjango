@@ -32,12 +32,12 @@ Bradley and Karen to discuss various topics regarding FLOSS.</p>
                              alt="[MP3 Audio
        RSS]"/></a><a href="/cast/">Recent Free as in Freedom Shows</a></h2>
 
+<div class="shaded">
 {% for cc in cast %}
 <a class="feedlink" href="{{ cc.ogg_path }}"><img alt="[Get cast in Ogg/Vorbis
                                           format]" src="/img/cast/audio_ogg_button.png"/></a>
 <a class="feedlink" href="{{ cc.mp3_path }}"><img alt="[Get cast in MP3 format]"
                                      src="/img/cast/audio_mp3_button.png"/></a>
-<div class="shaded">
 <p class="date">{{ cc.pub_date|date:"F j, Y" }}</p>
 <h3><a href="{{ cc.get_absolute_url }}">{{ cc.title|safe }}</a></h3>
 {{ cc.summary|safe }}
