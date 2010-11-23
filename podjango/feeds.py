@@ -99,9 +99,7 @@ def podcast_helper_add_root_elements(self, handler):
     handler.addQuickElement('generator', 'http://www.faif.us/code')
     
     handler.addQuickElement('media:thumbnail', '' , { 'url' : self.feed['rssImage']['url'] })
-    handler.addQuickElement('itunes:image', '' , { 'url' : self.feed['iTunesImage']['url'],
-                                                   'title' : self.feed['iTunesImage']['title'],
-                                                   'link' : self.feed['iTunesImage']['link'] })
+    handler.addQuickElement('itunes:image', '' , { 'href' : self.feed['iTunesImage']['url'])
     handler.addQuickElement('itunes:link', '', { 'href' : self.feed['iTunesImage']['url'],
                                                  'type' : self.feed['iTunesImage']['type']})
     
@@ -232,7 +230,7 @@ class CastFeed(CastFeedBase):
 
     def copyright_holder(self): return "Free as in Freedom"
 
-    def license_no_html(self): return "Licensed under a Creative Commons Attribution-No Derivative Works 3.0 United States License."
+    def license_no_html(self): return "Licensed under a Creative Commons Attribution-Share Alike 3.0 Unported License."
 
     def feed_extra_kwargs(self, obj):
         return for_podcast_feed_extra_kwargs(self, obj)
