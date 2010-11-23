@@ -99,7 +99,7 @@ def podcast_helper_add_root_elements(self, handler):
     handler.addQuickElement('generator', 'http://www.faif.us/code')
     
     handler.addQuickElement('media:thumbnail', '' , { 'url' : self.feed['rssImage']['url'] })
-    handler.addQuickElement('itunes:image', '' , { 'href' : self.feed['iTunesImage']['url'])
+    handler.addQuickElement('itunes:image', '' , { 'href' : self.feed['iTunesImage']['url']})
     handler.addQuickElement('itunes:link', '', { 'href' : self.feed['iTunesImage']['url'],
                                                  'type' : self.feed['iTunesImage']['type']})
     
