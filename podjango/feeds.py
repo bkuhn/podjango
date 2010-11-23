@@ -69,7 +69,7 @@ def for_podcast_feed_extra_kwargs(self, obj):
                                'type' : 'video/jpg'},
              'category' : { 'name' : 'Technology', 'scheme' : 'http://www.itunes.com/dtds/podcast-1.0.dtd',
                             'subcats' : [ 'Computers', 'Information Technology', 'Operating Systems' ] },
-             'keywords' : 'open source opensource freesoftware software freedom legal law linux free license gpl lgpl agpl bsd',
+             'keywords' : 'open source, opensource, freesoftware, software freedom, legal, law, linux, free, license, gpl, lgpl, agpl, bsd',
              'iTunesAuthor' : 'Free as in Freedom',
              'iTunesSubtitle' : 'Bi-Weekly Discussion of Legal, Policy, and Any other Issues in the Free, Libre, and Open Source Software (FLOSS) Community',
              'copyrightHolder' : self.copyright_holder(),
@@ -99,12 +99,9 @@ def podcast_helper_add_root_elements(self, handler):
     handler.addQuickElement('generator', 'http://www.faif.us/code')
     
     handler.addQuickElement('media:thumbnail', '' , { 'url' : self.feed['rssImage']['url'] })
-    handler.startElement('itunes:image', {})
-    handler.addQuickElement('url', self.feed['iTunesImage']['url'])
-    handler.addQuickElement('title', self.feed['iTunesImage']['title'])
-    handler.addQuickElement('link', self.feed['iTunesImage']['link'])
-    handler.endElement('itunes:image')
-    
+    handler.addQuickElement('itunes:image', '' , { 'url' : self.feed['iTunesImage']['url'],
+                                                   'title' : self.feed['iTunesImage']['title'],
+                                                   'link' : self.feed['iTunesImage']['link'] })
     handler.addQuickElement('itunes:link', '', { 'href' : self.feed['iTunesImage']['url'],
                                                  'type' : self.feed['iTunesImage']['type']})
     
