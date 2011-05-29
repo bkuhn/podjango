@@ -143,7 +143,7 @@ def podcast_helper_add_item_elements(self, handler, item):
     handler.addQuickElement("itunes:explicit", self.feed['iTunesExplicit'])
     handler.addQuickElement("itunes:block", self.feed['iTunesBlock'])
     handler.addQuickElement(u"itunes:keywords", self.feed['keywords'])
-    handler.addQuickElement('dc:creator', self.feed['dcCreator'])
+#    handler.addQuickElement('dc:creator', self.feed['dcCreator'])
     handler.addQuickElement("itunes:author", item['author_name'])
     handler.addQuickElement("itunes:duration", item['duration'])
     handler.addQuickElement('media:content', '', { 'url' : item['enclosure'].url,
