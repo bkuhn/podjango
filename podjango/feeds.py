@@ -57,8 +57,8 @@ class CastFeedBase(Feed):
 
 def for_podcast_feed_extra_kwargs(self, obj):
     return { 'managingEditorNames' : 'Bradley and Karen',
-             'rssImage' : { 'url' : 'http://faif.us/img/cast/faif_200x200.jpg',
-                            'width' : '200', 'height' : '200' },
+             'rssImage' : { 'url' : 'http://faif.us/img/cast/faif_144x144.jpg',
+                            'width' : '144', 'height' : '144' },
              'webMaster' : 'oggcast@faif.us (Bradley and Karen)',
              'dcCreator' : 'oggcast@faif.us (Bradley and Karen)',
              'iTunesExplicit'  : 'No',
