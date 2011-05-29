@@ -100,8 +100,8 @@ def podcast_helper_add_root_elements(self, handler):
     
     handler.addQuickElement('media:thumbnail', '' , { 'url' : self.feed['rssImage']['url'] })
     handler.addQuickElement('itunes:image', '' , { 'href' : self.feed['iTunesImage']['url']})
-    handler.addQuickElement('itunes:link', '', { 'href' : self.feed['iTunesImage']['url'],
-                                                 'type' : self.feed['iTunesImage']['type']})
+#    handler.addQuickElement('itunes:link', '', { 'href' : self.feed['iTunesImage']['url'],
+#                                                 'type' : self.feed['iTunesImage']['type']})
     
     handler.addQuickElement(u"media:category", self.feed['category']['name'],
                             { 'scheme': self.feed['category']['scheme']})
