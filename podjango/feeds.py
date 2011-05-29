@@ -93,7 +93,7 @@ def podcast_helper_add_root_elements(self, handler):
     handler.endElement('image')
     
     handler.addQuickElement('webMaster', self.feed['webMaster'])
-    handler.addQuickElement('dc:creator', self.feed['dcCreator'])
+#    handler.addQuickElement('dc:creator', self.feed['dcCreator'])
     handler.addQuickElement('itunes:explicit', self.feed['iTunesExplicit'])
     handler.addQuickElement('itunes:block', self.feed['iTunesBlock'])
     handler.addQuickElement('generator', 'http://www.faif.us/code')
