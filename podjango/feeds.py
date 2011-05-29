@@ -186,7 +186,7 @@ class iTunesFeedType(Rss201rev2Feed):
         attrs['xmlns:itunes'] = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
         attrs['xmlns:atom'] = 'http://www.w3.org/2005/Atom'
         attrs['xmlns:media'] = 'http://search.yahoo.com/mrss/'
-        attrs['xmlns:dc'] = "http://purl.org/dc/elements/1.1/"
+#        attrs['xmlns:dc'] = "http://purl.org/dc/elements/1.1/"
         return attrs
 
     def add_root_elements(self, handler):
