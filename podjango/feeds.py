@@ -35,7 +35,7 @@ import operator
 class CastFeedBase(Feed):
     def copyright_holder(self): return "Bradley M. Kuhn, Karen M. Sandler"
 
-    def license_no_html(self): return "Licensed under a Creative Commons Attribution-No Derivative Works 3.0 United States License."
+    def license_no_html(self): return "Licensed under a Creative Commons Attribution-Share Alike 3.0 USA License."
 
     def item_copyright(self, item):
         year = 2008
