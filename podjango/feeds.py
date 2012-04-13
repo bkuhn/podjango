@@ -202,7 +202,7 @@ class CastFeed(CastFeedBase):
     feed_type = iTunesFeedType
     title = "Free as in Freedom"
     link = "/cast/"
-    description = "A bi-weekly discussion of legal, policy, and other issues in the FLOSS world, including interviews from Brooklyn, New York, USA.  Presented by Karen Sandler and Bradley M. Kuhn."
+    description = "A bi-weekly discussion of legal, policy, and other issues in the open source and software freedom community (including occasional interviews) from Brooklyn, New York, USA.  Presented by Karen Sandler and Bradley M. Kuhn."
     author_email = "podcast@faif.us"
     author_link = "http://www.faif.us/"
     author_name = "Free as in Freedom"
