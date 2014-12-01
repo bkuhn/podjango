@@ -16,10 +16,7 @@
     <div id="podjangoheader">
       <h1><a href="/">Free as in Freedom</a></h1>
     </div>
-      {% block outercontent %}<div id="mainContent">{% block content %}{% endblock %}</div>{% endblock %}
-    <div id="podjangofooter">
-      {% block copyright_info %}
-
+    {% block outercontent %}<div id="mainContent">
       <p><strong>Please donate now</strong> to send Producer Dan Lynch to a Free
       Software conference of his choice, where he can help us record
       interviews and otherwise participate in the Free Software conference community:</p> 
@@ -33,7 +30,11 @@
 <p>We seek to raise $2,500 to fund Dan's trip.  Amounts raised beyond that
   benefit Software Freedom Conservancy, Inc. (the non-profit where the show's
   host Karen and Bradley work).</p>
-        
+
+      {% block content %}{% endblock %}</div>{% endblock %}
+    <div id="podjangofooter">
+      {% block copyright_info %}
+  
 <p>Free as in Freedom is produced by <a href="http://danlynch.org/blog/">Dan Lynch</a>
   of <a href="http://www.podfactory.org/">podfactory.org</a>.  Theme
   music written and performed
